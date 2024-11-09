@@ -25,7 +25,6 @@ public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id",unique = true,updatable = false,nullable = false)
-    @JsonIgnore
     private Long id;
     
     @OneToOne(mappedBy = "paciente")
@@ -77,13 +76,11 @@ public class Paciente {
     @ElementCollection
     @CollectionTable(name = "alergia_list", joinColumns = @JoinColumn(name = "paciente_id"))
     @Column(name = "alergia")
-    @NotNull
     private List<String> alergia;
     
     @ElementCollection
     @CollectionTable(name = "cirurgia_list", joinColumns = @JoinColumn(name = "paciente_id"))
     @Column(name = "cirurgia")
-    @NotNull
     private List<String>cirurgia;
 
     
@@ -91,11 +88,11 @@ public class Paciente {
     
     }
     
-	public Paciente(@NotEmpty @NotNull String nome, @NotNull @NotEmpty String rg, Long id,
-			@NotNull @NotEmpty String cpf, @NotNull Date data_nascimento, @NotNull int idade,
-			@NotNull @NotEmpty String endereco, @NotNull String numero, @NotNull char genero,
-			@NotNull List<String> medicacao, @NotNull char hipertensao, @NotNull char gravidez, @NotNull char avc,
-			@NotNull List<String> alergia, @NotNull List<String> cirurgia) {
+	public Paciente(  String nome,   String rg, Long id,
+			  String cpf,  Date data_nascimento,  int idade,
+			  String endereco,  String numero,  char genero,
+			 List<String> medicacao,  char hipertensao,  char gravidez,  char avc,
+			 List<String> alergia, List<String> cirurgia) {
 		this.nome = nome;
 		this.rg = rg;
 		this.id = id;
