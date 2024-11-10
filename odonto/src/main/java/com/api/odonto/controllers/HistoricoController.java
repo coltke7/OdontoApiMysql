@@ -7,7 +7,8 @@
 	import org.springframework.beans.factory.annotation.Autowired;
 	import org.springframework.http.ResponseEntity;
 	import org.springframework.validation.annotation.Validated;
-	import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 	import org.springframework.web.bind.annotation.PathVariable;
 	import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -33,8 +34,13 @@ import org.springframework.web.bind.annotation.RestController;
 		    @Autowired
 		    private PacienteServices pacienteServices;
 		    
+		    @GetMapping("/cpf/{cpf}")
+		    public ResponseEntity<Historico> findByCpf(@PathVariable String cpf){
+		        Historico obj = this.historicoServices.buscarid(cpf);
+		        return ResponseEntity.ok(obj);
+		    }
 		    
-		    @GetMapping("/{id}")
+		    @GetMapping("/id/{id}")
 		    public ResponseEntity<Historico> findById(@PathVariable Long id){
 		        Historico obj = this.historicoServices.buscarid(id);
 		        return ResponseEntity.ok(obj);
@@ -49,15 +55,21 @@ import org.springframework.web.bind.annotation.RestController;
 		        return ResponseEntity.created(uri).build();
 		    }
 		    
-//		    @PutMapping("/{id}")
-//		    @Validated
-//		    public ResponseEntity<Void> update (@Valid @RequestBody Historico obj, @PathVariable Long id){
-//		    	obj.setId(id);
-//		    	this.pacienteServices.update
-//		    	.noContent().build();
-//		    }
-//		    
-//		   
+		    @PutMapping("/{id}")
+		    @Validated
+		    public ResponseEntity<Void> update (@Valid @RequestBody Historico obj, @PathVariable Long id){
+		    	obj.setId(id);
+		    	this.historicoServices.update(obj);
+		    	return ResponseEntity.noContent().build();
+		    }
+		    
+		    @DeleteMapping("/{id}")
+		    public ResponseEntity<Void> delete(@PathVariable Long id){
+		    	this.historicoServices.delete(id);
+		    	return ResponseEntity.noContent().build();
+		    	
+		    }
+		   
 		    
 		    
 		}

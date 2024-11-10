@@ -1,6 +1,7 @@
 	package com.api.odonto.models;
 	
-	import java.util.List;
+	import java.util.Date;
+import java.util.List;
 	
 	import javax.persistence.*;
 	import javax.validation.constraints.NotNull;
@@ -26,6 +27,17 @@
 		private List<String> procimentosRealizados;
 
 		
+		@Column(name = "cpfp")
+	    private String cpfp;
+		
+		public String getCpfp() {
+			return cpfp;
+		}
+
+		public void setCpfp(String cpfp) {
+			this.cpfp = cpfp;
+		}
+
 		public Historico () {
 			
 		}

@@ -47,7 +47,7 @@ public class PacienteServices {
 		try {
 			this.pacienteRepository.deleteById(id);
 		} catch (Exception e) {
-			throw new RuntimeException("Não é possivel excluir o historico");
+			throw new RuntimeException("Não é possivel excluir o paciente, pois possui relação com historico");
 		}
 	}
     

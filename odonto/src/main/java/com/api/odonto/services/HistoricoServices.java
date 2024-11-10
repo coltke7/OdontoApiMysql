@@ -18,20 +18,28 @@ public class HistoricoServices {
 	
 	@Autowired
 	private PacienteServices pacienteService;
+
+	
+
+	public Historico buscarid(String cpf) {
+		
+		Optional<Historico> historico = this.historicoRepository.findBycpfp(cpf);
+		return historico.orElseThrow(()-> new RuntimeException("Historico não encontrado cpf#" + cpf));
+	}
 	
 	
 	public Historico buscarid(Long id) {
 		Optional<Historico> historico = this.historicoRepository.findById(id);
-		return historico.orElseThrow(()-> new RuntimeException("Historico não encontrado id#" + id));
+		return historico.orElseThrow(()-> new RuntimeException("Historico não encontrado cpf#" + id));
 	}
 	
-	@Transactional
-	public Historico criar(Historico obj) {
-
-		Paciente paciente = pacienteService.buscapeloId(obj.getPaciente().getId());
-		obj.setPaciente(paciente);
-		return this.historicoRepository.save(obj);
-	}
+		@Transactional
+		public Historico criar(Historico obj) {
+			Paciente paciente = pacienteService.buscapeloId(obj.getPaciente().getId());
+			obj.setPaciente(paciente);
+			obj.setCpfp(paciente.getCpf());
+			return this.historicoRepository.save(obj);
+		}
 	
 	public Historico update(Historico obj) {
 		Historico newObj = buscarid(obj.getId());

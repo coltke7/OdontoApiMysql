@@ -44,4 +44,20 @@
 	        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 	        return ResponseEntity.created(uri).build();
 	    }
+	    
+	    @PutMapping("/{id}")
+	    @Validated
+	    public ResponseEntity<Void> update (@Valid @RequestBody Paciente obj, @PathVariable Long id){
+	    	obj.setId(id);
+	    	this.pacienteServices.update(obj);
+	    	return ResponseEntity.noContent().build();
+	    }
+	    
+	    @DeleteMapping("/{id}")
+	    public ResponseEntity<Void> delete(@PathVariable Long id){
+	    	this.pacienteServices.delete(id);
+	    	return ResponseEntity.noContent().build();
+	    	
+	    }
+	    
 	}
