@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Procedimentos</title>
+    <link rel="stylesheet" href="cadastro_historico.css">
+</head>
+<body>
+<div>
+    <h2>Registrar Procedimentos</h2>
+    <form id="procedimentoForm">
+        <label for="pacienteId">ID do Paciente:</label>
+        <input type="number" id="pacienteId" name="pacienteId" required placeholder="Informe o ID do paciente">
+
+        <label for="procedimentos">Procedimentos Realizados (separe por vírgulas):</label>
+        <input type="text" id="procedimentos" name="procedimentos" required placeholder="Ex: Canal, Limpeza">
+
+        <button type="submit">Enviar</button>
+    </form>
+</div>
+
+<script src="cadastro_historico.js"></script>
+</body>
+</html>

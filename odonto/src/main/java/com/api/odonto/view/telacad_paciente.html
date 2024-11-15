@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Paciente</title>
+    <link rel="stylesheet" href="telacad_paciente.css">
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1>Cadastro de Paciente</h1>
+        <form id="telacad_pacienteForm">
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div class="input-group">
+                    <label for="rg">RG:</label>
+                    <input type="text" id="rg" name="rg" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="cpf">CPF:</label>
+                    <input type="text" id="cpf" name="cpf" required>
+                </div>
+                <div class="input-group">
+                    <label for="data_nascimento">Data de Nascimento:</label>
+                    <input type="date" id="data_nascimento" name="data_nascimento" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="idade">Idade:</label>
+                    <input type="number" id="idade" name="idade" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="endereco">Endereço:</label>
+                    <input type="text" id="endereco" name="endereco" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="numero">Número:</label>
+                    <input type="text" id="numero" name="numero" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="genero">Gênero:</label>
+                    <select id="genero" name="genero" required>
+                        <option value="M">Masculino</option>
+                        <option value="F">Feminino</option>
+                        <option value="O">Outro</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="hipertensao">Hipertensão:</label>
+                    <select id="hipertensao" name="hipertensao" required>
+                        <option value="S">Sim</option>
+                        <option value="N">Não</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="gravidez">Gravidez:</label>
+                    <select id="gravidez" name="gravidez" required>
+                        <option value="S">Sim</option>
+                        <option value="N">Não</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="avc">AVC:</label>
+                    <select id="avc" name="avc" required>
+                        <option value="S">Sim</option>
+                        <option value="N">Não</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label for="medicacao">Medicamentos:</label>
+                <input type="text" id="medicacao" name="medicacao" placeholder="Medicamento A, Medicamento B" required>
+            </div>
+
+            <div class="form-row">
+                <label for="alergia">Alergias:</label>
+                <input type="text" id="alergia" name="alergia" placeholder="Ex: Penicilina, Amendoim" required>
+            </div>
+
+            <div class="form-row">
+                <label for="cirurgia">Cirurgias:</label>
+                <input type="text" id="cirurgia" name="cirurgia" placeholder="Ex: Apendicite, Joelho" required>
+            </div>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+</div>
+<script src="telacad_paciente.js"></script>
+</body>
+</html>
