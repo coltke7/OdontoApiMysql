@@ -20,12 +20,20 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 400px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Ajusta o alinhamento dos itens à esquerda */
 }
 
 h2 {
     margin-bottom: 20px;
     color: #333;
+    text-align: center;
+}
+
+#pacienteInfo {
+    margin-top: 20px;  /* Aumenta o espaçamento acima do bloco */
+    margin-bottom: 20px;  /* Aumenta o espaçamento abaixo do bloco */
 }
 
 label {
@@ -38,7 +46,7 @@ label {
 input, textarea {
     width: 100%;
     padding: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 10px; /* Diminuído para reduzir o espaçamento */
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
@@ -52,6 +60,8 @@ button {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    align-self: flex-end; /* Isso move o botão para a direita */
+    margin-top: 10px; /* Distância do botão para os campos */
 }
 
 button:hover {

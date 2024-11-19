@@ -27,7 +27,7 @@ function buscarPaciente(event) {
         })
         .catch(error => {
             console.error('Erro ao buscar os dados do paciente:', error);
-            alert('Não foi possível encontrar o paciente. Verifique o CPF e tente novamente.');
+
         });
 }
 

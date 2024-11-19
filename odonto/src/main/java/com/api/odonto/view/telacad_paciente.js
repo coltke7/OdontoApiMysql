@@ -40,6 +40,6 @@ const paciente = {
     })
     .catch(error => {
         console.error('Erro ao enviar os dados:', error);
-        alert('Ocorreu um erro ao enviar os dados. Tente novamente.');
+
     });
 });

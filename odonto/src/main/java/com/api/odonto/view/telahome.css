@@ -1,0 +1,87 @@
+/* Resetando margens e padding para todos os elementos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9; /* Fundo branco para o corpo */
+    color: #333;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza o conteúdo verticalmente */
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    padding: 0; /* Removendo o padding do body */
+    margin-top: 0px; /* Adiciona um espaço para o header fixo no topo */
+}
+
+/* Header com fundo verde (fixo no topo) */
+.header {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 10; /* Garante que o header ficará acima do card */
+}
+
+/* Título da página */
+h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+/* Card com conteúdo */
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Sombra suave em volta do card */
+    padding: 40px;
+    width: 100%;
+    max-width: 500px; /* Limita a largura máxima do card */
+    text-align: center;
+    margin-top: 0; /* Garante que o card não sobreponha o header */
+}
+
+/* Título da seção */
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Parágrafo de boas-vindas */
+p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+/* Estilo dos botões */
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Aumenta o espaço entre os botões */
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 12px 25px; /* Ajusta o tamanho do botão */
+    font-size: 16px; /* Diminui o tamanho da fonte */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 200px; /* Tamanho fixo para os botões */
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
