@@ -36,7 +36,7 @@ public class PacienteServices {
     public Paciente update(Paciente obj) {
 		Paciente newObj = buscapeloId(obj.getId());
 		newObj.setEndereco(obj.getEndereco());
-		newObj.setIdade(obj.getIdade());
+		newObj.setCep(obj.getCep());
 		newObj.setNumero(obj.getNumero());
 		
 		return this.pacienteRepository.save(newObj);

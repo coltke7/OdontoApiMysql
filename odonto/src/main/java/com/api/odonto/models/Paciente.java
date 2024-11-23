@@ -39,9 +39,9 @@ public class Paciente {
     @NotNull
     private Date data_nascimento;
 
-    @Column(name = "idade",nullable = false)
+    @Column(name = "cep",nullable = false)
     @NotNull
-    private int idade;
+    private String cep;
 
     @Column(name = "endereco",length = 255,nullable = false)
     @NotNull
@@ -89,7 +89,7 @@ public class Paciente {
     }
     
 	public Paciente(  String nome,   String rg, Long id,
-			  String cpf,  Date data_nascimento,  int idade,
+			  String cpf,  Date data_nascimento,  String cep,
 			  String endereco,  String numero,  char genero,
 			 List<String> medicacao,  char hipertensao,  char gravidez,  char avc,
 			 List<String> alergia, List<String> cirurgia) {
@@ -98,7 +98,7 @@ public class Paciente {
 		this.id = id;
 		this.cpf = cpf;
 		this.data_nascimento = data_nascimento;
-		this.idade = idade;
+		this.cep = cep;
 		this.endereco = endereco;
 		this.numero = numero;
 		this.genero = genero;
@@ -150,12 +150,12 @@ public class Paciente {
 		this.data_nascimento = data_nascimento;
 	}
 
-	public int getIdade() {
-		return idade;
+	public String getCep() {
+		return cep;
 	}
 
-	public void setIdade(int idade) {
-		this.idade = idade;
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
 
 	public String getEndereco() {

@@ -10,7 +10,7 @@ const paciente = {
     rg: document.getElementById('rg').value,
     cpf: document.getElementById('cpf').value,
     data_nascimento: document.getElementById('data_nascimento').value,
-    idade: document.getElementById('idade').value,
+    cep: document.getElementById('cep').value,
     endereco: document.getElementById('endereco').value,
     numero: document.getElementById('numero').value,
     genero: document.getElementById('genero').value,

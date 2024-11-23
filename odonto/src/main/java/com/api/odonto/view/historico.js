@@ -49,14 +49,14 @@ function exibirPaciente(data) {
         <p><strong>RG:</strong> ${paciente.rg}</p>
         <p><strong>CPF:</strong> ${paciente.cpf}</p>
         <p><strong>Data de Nascimento:</strong> ${new Date(paciente.data_nascimento).toLocaleDateString()}</p>
-        <p><strong>Idade:</strong> ${paciente.idade} anos</p>
+        <p><strong>Cep:</strong> ${paciente.cep} </p>
         <p><strong>Endereço:</strong> ${paciente.endereco}</p>
         <p><strong>Telefone:</strong> ${paciente.numero}</p>
         <p><strong>Gênero:</strong> ${paciente.genero === 'M' ? 'Masculino' : paciente.genero === 'F' ? 'Feminino' : 'Outro'}</p>
-        <p><strong>Medicamentos:</strong> ${paciente.medicacao.join(', ')}</p>
         <p><strong>Hipertensão:</strong> ${paciente.hipertensao === 'S' ? 'Sim' : 'Não'}</p>
         <p><strong>Gravidez:</strong> ${paciente.gravidez === 'S' ? 'Sim' : 'Não'}</p>
         <p><strong>AVC:</strong> ${paciente.avc === 'S' ? 'Sim' : 'Não'}</p>
+        <p><strong>Medicamentos:</strong> ${paciente.medicacao.join(', ')}</p>
         <p><strong>Alergias:</strong> ${paciente.alergia.join(', ')}</p>
         <p><strong>Cirurgias:</strong> ${paciente.cirurgia.join(', ')}</p>
         <p><strong>Procedimentos Realizados:</strong> ${data.procimentosRealizados.join(', ')}</p>
