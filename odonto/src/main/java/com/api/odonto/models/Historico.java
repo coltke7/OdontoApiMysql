@@ -1,30 +1,34 @@
 	package com.api.odonto.models;
-	
+
+	import com.fasterxml.jackson.annotation.*;
 	import java.util.Date;
-import java.util.List;
-	
+    import java.util.List;
 	import javax.persistence.*;
 	import javax.validation.constraints.NotNull;
-	
 	
 	@Entity
 	@Table(name = "historico")
 	public class Historico {
-	
-		
+
 		@Id
 		@Column(name = "id",unique = true,updatable = false, nullable = false)
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Long id;
 		
 		@OneToOne
-		@JoinColumn(name = "paciente_id",nullable = false,updatable = false)
+		@JoinColumn(name = "paciente_id")
 		private Paciente paciente;
-		
-		@ElementCollection
-	    @CollectionTable(name = "procedimentos_list", joinColumns = @JoinColumn(name = "paciente_id"))
-		@Column(name = "procedimentos")
-		private List<String> procimentosRealizados;
+
+		//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+		@JsonBackReference
+		@OneToMany(mappedBy = "historico")
+		private List<Procedimentos> procedimentos;
+
+
+//		@ElementCollection
+//	    @CollectionTable(name = "procedimentos_list", joinColumns = @JoinColumn(name = "paciente_id"))
+//		@Column(name = "procedimentos")
+//		private List<String> procimentosRealizados;
 
 		
 		@Column(name = "cpfp")
@@ -42,10 +46,10 @@ import java.util.List;
 			
 		}
 		
-		public Historico(Long id, Paciente paciente, List<String> procimentosRealizados) {
+		public Historico(Long id, Paciente paciente, List<Procedimentos> procedimentos) {
 			this.id = id;
 			this.paciente = paciente;
-			this.procimentosRealizados = procimentosRealizados;
+			this.procedimentos = procedimentos;
 		}
 
 		public Long getId() {
@@ -64,12 +68,12 @@ import java.util.List;
 			this.paciente = paciente;
 		}
 
-		public List<String> getProcimentosRealizados() {
-			return procimentosRealizados;
+		public List<Procedimentos> getProcimentos() {
+			return procedimentos;
 		}
 
-		public void setProcimentosRealizados(List<String> procimentosRealizados) {
-			this.procimentosRealizados = procimentosRealizados;
+		public void setProcedimentos(List<Procedimentos> procedimentos) {
+			this.procedimentos = procedimentos;
 		}
 		
 	

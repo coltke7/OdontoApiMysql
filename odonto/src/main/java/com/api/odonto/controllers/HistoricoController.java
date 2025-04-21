@@ -4,6 +4,7 @@ import java.net.URI;
 
 import javax.validation.Valid;
 
+import com.api.odonto.models.Procedimentos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -36,7 +37,7 @@ public class HistoricoController {
 
     @GetMapping("/cpf/{cpf}")
     public ResponseEntity<Historico> findByCpf(@PathVariable String cpf) {
-        Historico obj = this.historicoServices.buscarid(cpf);
+        Historico obj = this.historicoServices.buscaridc(cpf);
         return ResponseEntity.ok(obj);
     }
 

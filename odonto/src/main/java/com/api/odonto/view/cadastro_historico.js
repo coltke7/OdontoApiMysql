@@ -1,4 +1,19 @@
-document.getElementById('consultarPaciente').addEventListener('click', function() {
+function maskcpf(input) {
+  let text = input.value.replace(/\D/g, ''); // Remove non-numeric characters
+  if (text.length > 11) {
+    text = text.substring(0, 11); // Truncate to 11 digits
+  }
+  if (text.length > 9) {
+    text = text.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+  } else if (text.length > 6) {
+    text = text.replace(/(\d{3})(\d{3})(\d{3})/, '$1.$2.$3');
+  } else if (text.length > 3) {
+    text = text.replace(/(\d{3})(\d{3})/, '$1.$2');
+  }
+  input.value = text;
+}
+var idhistorico;
+document.getElementById('cpf').addEventListener('blur', function() {
     const cpf = document.getElementById('cpf').value;  // Obtem o CPF informado no campo
     if (!cpf) {
         alert('Por favor, informe o CPF do paciente.');
@@ -6,7 +21,7 @@ document.getElementById('consultarPaciente').addEventListener('click', function(
     }
 
     // Faz a consulta do paciente pelo CPF
-	fetch(`http://localhost:8080/paciente/cpf/${cpf}`) 
+	fetch(`http://localhost:8080/historico/cpf/${cpf}`) 
         .then(response => {
             if (!response.ok) {
                 throw new Error('Paciente não encontrado');
@@ -15,62 +30,36 @@ document.getElementById('consultarPaciente').addEventListener('click', function(
         })
         .then(data => {
             // Se o paciente for encontrado, exibimos as informações
-            const pacienteId = data.id;
-            const pacienteNome = data.nome;
-            const pacienteIdade = data.idade;
-            const pacienteEndereco = data.endereco;
-
+            const pacienteNome = data.paciente.nome;
             // Atualizando os campos na interface
-            document.getElementById('pacienteIdDisplay').textContent = pacienteId;
+			idhistorico = data.id;
             document.getElementById('pacienteNomeDisplay').textContent = pacienteNome;
-
-            // Se desejar exibir mais informações do paciente, pode adicionar aqui:
-            // Exemplo: idade e endereço
-            console.log('Idade:', pacienteIdade);
-            console.log('Endereço:', pacienteEndereco);
-
             // Exibindo o bloco com as informações do paciente
             document.getElementById('pacienteInfo').style.display = 'block';
-
             // Armazenamos o ID do paciente no campo oculto para enviar depois
-            document.getElementById('pacienteId').value = pacienteId;
         })
-        .catch(error => {
-            console.error('Erro ao consultar o paciente:', error);
-        });
+
 });
+
 
 const form = document.getElementById('procedimentoForm');
 
 form.addEventListener('submit', function(event) {
-    event.preventDefault();  // Previne o comportamento padrão de envio do formulário
-
-
-	   // Obtendo o valor do ID do paciente e os procedimentos realizados
-	    const pacienteId = Number(document.getElementById('pacienteId').value);  // Converte para número inteiro
-	    const procedimentos = document.getElementById('procedimentos').value.split(',').map(p => p.trim());  // Remove espaços extras
-
-	    // Verifique no console se os dados estão sendo preenchidos corretamente
-
-
-	    // Criar o objeto de dados para enviar ao backend
-	    const historico = {
-	                      "paciente": {
-	                        "id":pacienteId
-	                      },
-	                      "procimentosRealizados": procedimentos
+    event.preventDefault(); 
+var procedimento = document.getElementById('procedimentos').value; // Previne o comportamento padrão de envio do formulário
+	    const procedimentos = {
+			              historico: {
+	                         id: idhistorico
+						  },
+	                      procedimentos : procedimento
 	                    };
-
-	    // Verifique no console o JSON criado para garantir que está correto
-	    console.log('Dados para envio:', JSON.stringify(historico));  // Verifique o JSON
-
 	    // Enviar os dados para o servidor usando o método POST
-		fetch('http://localhost:8080/historico/', {
+		fetch('http://localhost:8080/procedimentos/', {
 		        method: 'POST',
 		        headers: {
 		            'Content-Type': 'application/json'  // Definir o tipo de conteúdo como JSON
 		        },
-		        body: JSON.stringify(historico)  // Converter o objeto para JSON antes de enviar
+		        body: JSON.stringify(procedimentos)  // Converter o objeto para JSON antes de enviar
 		    })
 			
 	    .then(response => response.json())  // A resposta deve ser convertida para JSON

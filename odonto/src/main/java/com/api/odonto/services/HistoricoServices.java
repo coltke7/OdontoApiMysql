@@ -1,7 +1,11 @@
 package com.api.odonto.services;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
+import com.api.odonto.models.Procedimentos;
+import com.api.odonto.repositories.ProcedimentosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,13 +19,10 @@ public class HistoricoServices {
 	
 	@Autowired
 	private HistoricoRepository historicoRepository;
-	
-	@Autowired
-	private PacienteServices pacienteService;
+    @Autowired
+    private ProcedimentosRepository procedimentosRepository;
 
-	
-
-	public Historico buscarid(String cpf) {
+	public Historico buscaridc(String cpf) {
 		
 		Optional<Historico> historico = this.historicoRepository.findBycpfp(cpf);
 		return historico.orElseThrow(()-> new RuntimeException("Historico não encontrado cpf#" + cpf));
@@ -29,21 +30,35 @@ public class HistoricoServices {
 	
 	
 	public Historico buscarid(Long id) {
+		Optional<Historico> historico = this.historicoRepository.findByPaciente_Id(id);
+		//List<Procedimentos> procedimentos = historico.get().getProcimentos();
+		List<Procedimentos> procedimentos = procedimentosRepository.findAllByHistorico_Id(id);
+		historico.get().setProcedimentos(procedimentos);
+		return historico.orElseThrow(()-> new RuntimeException("Historico não encontrado cpf#" + id));
+	}
+	public Historico buscaridd(Long id) {
 		Optional<Historico> historico = this.historicoRepository.findById(id);
+		//List<Procedimentos> procedimentos = historico.get().getProcimentos();
+		List<Procedimentos> procedimentos = procedimentosRepository.findAllByHistorico_Id(id);
+		historico.get().setProcedimentos(procedimentos);
 		return historico.orElseThrow(()-> new RuntimeException("Historico não encontrado cpf#" + id));
 	}
 	
 		@Transactional
 		public Historico criar(Historico obj) {
-			Paciente paciente = pacienteService.buscapeloId(obj.getPaciente().getId());
-			obj.setPaciente(paciente);
-			obj.setCpfp(paciente.getCpf());
-			return this.historicoRepository.save(obj);
+			if(!historicoRepository.findByPaciente_Id(obj.getPaciente().getId()).isPresent()) {
+				obj.setId(null);
+//				Paciente paciente = pacienteService.buscapeloId(obj.getPaciente().getId());
+//				obj.setPaciente(paciente);
+				obj.setCpfp(obj.getPaciente().getCpf());
+			//	obj.setProcedimentos(new ArrayList<>());
+				return this.historicoRepository.save(obj);
+			}
+			return null;
 		}
 	
 	public Historico update(Historico obj) {
 		Historico newObj = buscarid(obj.getId());
-		newObj.setProcimentosRealizados(obj.getProcimentosRealizados());
 		return this.historicoRepository.save(newObj);
 	}
 	
